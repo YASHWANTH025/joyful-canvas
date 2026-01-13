@@ -17,7 +17,7 @@ const Hero = () => {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm text-muted-foreground">Available for work</span>
+            <span className="text-sm text-muted-foreground">Available for opportunities</span>
           </motion.div>
 
           <motion.h1
@@ -26,11 +26,11 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight"
           >
-            <span className="text-foreground">Creative</span>
+            <span className="text-foreground">Hi, I'm</span>
             <br />
-            <span className="gradient-text glow-text">Portfolio</span>
+            <span className="gradient-text glow-text">Yashwanth</span>
             <br />
-            <span className="text-foreground">Design</span>
+            <span className="text-foreground text-3xl md:text-4xl lg:text-5xl">Software Developer</span>
           </motion.h1>
 
           <motion.p
@@ -39,9 +39,11 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            I'm currently looking to join a{" "}
-            <span className="text-primary border-b border-primary/50">cross-functional team</span>{" "}
-            that values improving people's lives through accessible design.
+            Information Technology undergraduate with hands-on experience in{" "}
+            <span className="text-primary border-b border-primary/50">full-stack development</span>,{" "}
+            <span className="text-primary border-b border-primary/50">REST APIs</span>, and{" "}
+            <span className="text-primary border-b border-primary/50">AI fundamentals</span>.
+            Passionate about creating impactful solutions.
           </motion.p>
 
           <motion.div
@@ -50,20 +52,22 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="flex flex-wrap gap-4 justify-center"
           >
-            <motion.button
+            <motion.a
+              href="#projects"
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(270 91% 65% / 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm transition-all"
+              className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm transition-all cursor-pointer"
             >
               View Projects
-            </motion.button>
-            <motion.button
+            </motion.a>
+            <motion.a
+              href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 rounded-full bg-transparent border border-glass-border text-foreground font-medium text-sm hover:bg-secondary/50 transition-all"
+              className="px-8 py-4 rounded-full bg-transparent border border-glass-border text-foreground font-medium text-sm hover:bg-secondary/50 transition-all cursor-pointer"
             >
-              Download CV
-            </motion.button>
+              Get in Touch
+            </motion.a>
           </motion.div>
         </motion.div>
 
@@ -75,9 +79,9 @@ const Hero = () => {
           className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto"
         >
           {[
-            { number: "3+", label: "Years Experience" },
-            { number: "50+", label: "Projects Completed" },
-            { number: "25+", label: "Happy Clients" },
+            { number: "3+", label: "Projects Completed" },
+            { number: "5+", label: "Certifications" },
+            { number: "2+", label: "Years Learning" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
