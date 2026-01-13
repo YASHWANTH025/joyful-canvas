@@ -1,8 +1,11 @@
 import Navigation from "@/components/Navigation";
 import FloatingElements from "@/components/FloatingElements";
 import Hero from "@/components/Hero";
-import WorkExperience from "@/components/WorkExperience";
-import OrbitalElement from "@/components/OrbitalElement";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Education from "@/components/Education";
+import Certifications from "@/components/Certifications";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -12,8 +15,11 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        <WorkExperience />
-        <OrbitalElement />
+        <Skills />
+        <Projects />
+        <Education />
+        <Certifications />
+        <Contact />
       </main>
       <Footer />
     </div>
