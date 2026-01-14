@@ -59,7 +59,7 @@ const Hero = () => {
             duration: 0.8,
             delay: 0.6
           }} className="mb-6 leading-tight">
-              <span className="font-signature text-6xl md:text-7xl gradient-text glow-text italic tracking-wide block lg:text-7xl font-thin text-justify text-primary-foreground">Yashwanth A M</span>
+              <span className="font-signature text-6xl md:text-7xl gradient-text glow-text italic tracking-wide block lg:text-7xl font-thin text-justify text-primary-foreground bg-primary-foreground">Yashwanth A M</span>
               <span className="font-handwritten text-3xl md:text-4xl text-primary/80 block mt-2">
             </span>
             </motion.h1>
