@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         heading: ['Space Grotesk', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
+        signature: ['Playfair Display', 'serif'],
+        handwritten: ['Caveat', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",

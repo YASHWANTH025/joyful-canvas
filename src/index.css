@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -51,6 +51,8 @@
 
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --font-signature: 'Playfair Display', serif;
+    --font-handwritten: 'Caveat', cursive;
   }
 
   .dark {
@@ -154,4 +156,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }

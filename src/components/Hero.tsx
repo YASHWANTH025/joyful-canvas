@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { User } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -10,6 +11,32 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center"
         >
+          {/* Profile Picture */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+            className="relative mx-auto mb-8 w-40 h-40 md:w-48 md:h-48"
+          >
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-primary animate-spin-slow opacity-70 blur-md" />
+            <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-accent/20 p-1 glow-border">
+              <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden border-2 border-glass-border">
+                <User className="w-20 h-20 md:w-24 md:h-24 text-primary/60" />
+              </div>
+            </div>
+            {/* Decorative rings */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-4 rounded-full border border-primary/20 border-dashed"
+            />
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-8 rounded-full border border-accent/10 border-dotted"
+            />
+          </motion.div>
+
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -24,13 +51,16 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight"
+            className="mb-6 leading-tight"
           >
-            <span className="text-foreground">Hi, I'm</span>
-            <br />
-            <span className="gradient-text glow-text">Yashwanth</span>
-            <br />
-            <span className="text-foreground text-3xl md:text-4xl lg:text-5xl">Software Developer</span>
+            <span className="text-foreground text-2xl md:text-3xl font-body block mb-2">Hi, I'm</span>
+            <span className="font-signature text-6xl md:text-8xl lg:text-9xl gradient-text glow-text italic tracking-wide block">
+              Yashwanth
+            </span>
+            <span className="font-handwritten text-xl md:text-2xl text-muted-foreground block mt-2">A M</span>
+            <span className="text-foreground text-2xl md:text-3xl lg:text-4xl font-heading font-medium block mt-4">
+              Software Developer
+            </span>
           </motion.h1>
 
           <motion.p
