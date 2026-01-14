@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const navItems = ["About", "Skills", "Projects", "Education", "Certifications", "Contact"];
@@ -25,15 +26,15 @@ const Navigation = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Signature Logo */}
         <motion.a
           href="#about"
           whileHover={{ scale: 1.05 }}
-          className="flex items-center gap-2"
+          className="flex items-center"
         >
-          <div className="w-10 h-10 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center glow-border">
-            <span className="text-primary font-heading font-bold text-lg">Y</span>
-          </div>
-          <span className="font-heading font-semibold text-foreground hidden sm:block">Yashwanth</span>
+          <span className="font-signature text-3xl md:text-4xl gradient-text italic">
+            Yashwanth
+          </span>
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -51,6 +52,9 @@ const Navigation = () => {
               {item}
             </motion.a>
           ))}
+          
+          <ThemeToggle />
+          
           <motion.a
             href="mailto:yashwanthyashum2003@gmail.com"
             whileHover={{ scale: 1.05 }}
@@ -62,13 +66,16 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden w-10 h-10 rounded-xl bg-secondary/50 border border-glass-border flex items-center justify-center text-foreground"
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </motion.button>
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-10 h-10 rounded-xl bg-secondary/50 border border-glass-border flex items-center justify-center text-foreground"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </motion.button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
