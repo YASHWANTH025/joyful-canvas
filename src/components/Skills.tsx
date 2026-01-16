@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import GlowCard from "./GlowCard";
 import { Code2, Database, Cloud, Settings, Brain, Layers } from "lucide-react";
 
 const Skills = () => {
@@ -86,43 +87,65 @@ const Skills = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <ScrollReveal key={category.title} delay={categoryIndex * 0.1}>
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="glass-card p-6 h-full"
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center text-white`}>
-                    {category.icon}
+              <GlowCard className="h-full">
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <motion.div 
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                      className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center text-white`}
+                    >
+                      {category.icon}
+                    </motion.div>
+                    <h3 className="font-heading font-semibold text-lg text-foreground">
+                      {category.title}
+                    </h3>
                   </div>
-                  <h3 className="font-heading font-semibold text-lg text-foreground">
-                    {category.title}
-                  </h3>
-                </div>
 
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm text-muted-foreground">{skill.name}</span>
-                        <span className="text-sm text-primary">{skill.level}%</span>
-                      </div>
-                      <div className="h-2 bg-secondary/50 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ 
-                            duration: 1, 
-                            delay: categoryIndex * 0.1 + skillIndex * 0.1,
-                            ease: "easeOut"
-                          }}
-                          className={`h-full rounded-full bg-gradient-to-r ${category.gradient}`}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                  <div className="space-y-4">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.div 
+                        key={skill.name}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: skillIndex * 0.1 }}
+                      >
+                        <div className="flex justify-between mb-2">
+                          <span className="text-sm text-muted-foreground">{skill.name}</span>
+                          <motion.span 
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            className="text-sm text-primary font-medium"
+                          >
+                            {skill.level}%
+                          </motion.span>
+                        </div>
+                        <div className="h-2 bg-secondary/50 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.level}%` }}
+                            viewport={{ once: true }}
+                            transition={{ 
+                              duration: 1.2, 
+                              delay: categoryIndex * 0.1 + skillIndex * 0.1,
+                              ease: [0.25, 0.46, 0.45, 0.94]
+                            }}
+                            className={`h-full rounded-full bg-gradient-to-r ${category.gradient} relative`}
+                          >
+                            <motion.div
+                              animate={{ x: ["-100%", "100%"] }}
+                              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                            />
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
+              </GlowCard>
             </ScrollReveal>
           ))}
         </div>

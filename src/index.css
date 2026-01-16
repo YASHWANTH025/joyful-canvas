@@ -206,3 +206,47 @@
 .animate-spin-slow {
   animation: spin-slow 8s linear infinite;
 }
+
+/* Custom cursor hiding for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-none {
+    cursor: auto !important;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section transitions */
+section {
+  position: relative;
+}
+
+/* Enhanced glass effect */
+.glass-enhanced {
+  @apply bg-card/40 backdrop-blur-2xl border border-glass-border;
+  box-shadow: 
+    0 8px 32px hsl(0 0% 0% / 0.2),
+    inset 0 1px 0 hsl(0 0% 100% / 0.05);
+}
+
+/* Neon text glow */
+.neon-text {
+  text-shadow: 
+    0 0 5px hsl(var(--primary)),
+    0 0 10px hsl(var(--primary)),
+    0 0 20px hsl(var(--primary)),
+    0 0 40px hsl(var(--primary));
+}
+
+/* Hover lift effect */
+.hover-lift {
+  @apply transition-all duration-300;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px hsl(var(--primary) / 0.2);
+}
