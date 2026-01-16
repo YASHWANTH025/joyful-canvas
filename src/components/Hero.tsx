@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Download, ArrowDown } from "lucide-react";
 import profileImage from "@/assets/profile.png";
 import { useTypingAnimation } from "@/hooks/useTypingAnimation";
+import MagneticButton from "./MagneticButton";
+import { AnimatedLetters } from "./AnimatedText";
 
 const Hero = () => {
   const roles = ["Full-Stack Developer", "AI Enthusiast", "Problem Solver", "UI/UX Developer"];
@@ -123,32 +125,28 @@ const Hero = () => {
             with hands-on experience in full-stack development, REST APIs, IoT, and cloud technologies.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons with Magnetic Effect */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <motion.a
+            <MagneticButton
               href="#projects"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(270 91% 65% / 0.4)" }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm transition-all cursor-pointer flex items-center gap-2"
+              className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-sm transition-all cursor-pointer flex items-center gap-2 hover:shadow-[0_0_30px_hsl(270_91%_65%_/_0.4)]"
             >
               View Projects
               <ArrowDown className="w-4 h-4" />
-            </motion.a>
-            <motion.a
+            </MagneticButton>
+            <MagneticButton
               href="/resume.pdf"
               download="Yashwanth_AM_Resume.pdf"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               className="px-8 py-4 rounded-full bg-transparent border border-primary/50 text-foreground font-medium text-sm hover:bg-primary/10 transition-all cursor-pointer flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Download Resume
-            </motion.a>
+            </MagneticButton>
           </motion.div>
 
           {/* Stats */}
