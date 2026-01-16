@@ -49,20 +49,18 @@ const Projects = () => {
 
         <div className="space-y-24">
           {projects.map((project, index) => (
-            <ScrollReveal 
-              key={project.title} 
-              delay={index * 0.15}
-              direction={index % 2 === 0 ? "left" : "right"}
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className={`grid lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
                 index % 2 === 1 ? 'lg:flex-row-reverse' : ''
               }`}>
-                {/* Text Content - Left Side */}
-                <motion.div
-                  className={`${index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}
-                  whileHover={{ x: index % 2 === 0 ? 10 : -10 }}
-                  transition={{ duration: 0.3 }}
-                >
+                {/* Text Content */}
+                <div className={`${index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
                   <span className="text-primary font-medium text-sm tracking-wide uppercase mb-2 block">
                     Featured Project
                   </span>
@@ -83,7 +81,7 @@ const Projects = () => {
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 rounded-full bg-secondary/50 border border-glass-border text-sm text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                        className="px-4 py-2 rounded-full bg-secondary/50 border border-glass-border text-sm text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -92,61 +90,51 @@ const Projects = () => {
 
                   {/* Links */}
                   <div className="flex gap-4">
-                    <motion.a
-                      href="#"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 rounded-lg bg-secondary/50 border border-glass-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                    >
-                      <Github className="w-5 h-5" />
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 rounded-lg bg-secondary/50 border border-glass-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 rounded-lg bg-secondary/50 border border-glass-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-                    >
-                      <Globe className="w-5 h-5" />
-                    </motion.a>
+                    {[Github, ExternalLink, Globe].map((Icon, i) => (
+                      <motion.a
+                        key={i}
+                        href="#"
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="w-10 h-10 rounded-lg bg-secondary/50 border border-glass-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 hover:shadow-[0_0_15px_hsl(270_91%_65%_/_0.2)] transition-all duration-300"
+                      >
+                        <Icon className="w-5 h-5" />
+                      </motion.a>
+                    ))}
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Image - Right Side */}
+                {/* Image with hover lift and zoom */}
                 <motion.div
                   className={`${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.4 }}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   <div className="relative group">
-                    {/* Glow effect behind image */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                    {/* Subtle glow effect behind image */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-2xl blur-xl opacity-10 group-hover:opacity-25 transition-opacity duration-500`} />
                     
                     {/* Image container */}
-                    <div className="relative rounded-2xl overflow-hidden border border-glass-border shadow-2xl">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60" />
+                    <div className="relative rounded-2xl overflow-hidden border border-glass-border shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                      <div className="overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                        />
+                      </div>
+                      {/* Subtle overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-50" />
                     </div>
 
                     {/* Corner decorations */}
-                    <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-primary/50 rounded-tr-lg" />
-                    <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-2 border-l-2 border-primary/50 rounded-bl-lg" />
+                    <div className="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-primary/40 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-primary/40 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 </motion.div>
               </div>
-            </ScrollReveal>
+            </motion.div>
           ))}
         </div>
       </div>
