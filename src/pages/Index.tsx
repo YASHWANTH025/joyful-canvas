@@ -1,7 +1,5 @@
 import Navigation from "@/components/Navigation";
 import FloatingElements from "@/components/FloatingElements";
-import ParticleField from "@/components/ParticleField";
-import CustomCursor from "@/components/CustomCursor";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -12,9 +10,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-background overflow-x-hidden cursor-none">
-      <CustomCursor />
-      <ParticleField />
+    <div className="relative min-h-screen bg-background overflow-x-hidden">
       <FloatingElements />
       <Navigation />
       <main>

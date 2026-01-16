@@ -1,65 +1,44 @@
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 const FloatingElements = () => {
+  // Minimal floating dots - only 15, very subtle
+  const dots = useMemo(() => {
+    return Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 2,
+      duration: Math.random() * 15 + 20, // Very slow: 20-35s
+      delay: Math.random() * 5,
+    }));
+  }, []);
+
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {/* Large glow orb */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/20 blur-[120px]"
-      />
-
-      {/* Floating orbs */}
-      <motion.div
-        animate={{
-          y: [-20, 20, -20],
-          x: [-10, 10, -10],
-          rotate: [0, 10, 0],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-32 right-[15%] w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent opacity-60 blur-sm"
-      />
-
-      <motion.div
-        animate={{
-          y: [20, -20, 20],
-          x: [10, -10, 10],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute top-[60%] left-[10%] w-8 h-8 rounded-full bg-primary/40 blur-sm"
-      />
-
-      <motion.div
-        animate={{
-          y: [-15, 15, -15],
-          rotate: [0, 180, 360],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[40%] right-[8%] w-6 h-6 rounded-lg bg-accent/30 blur-[2px]"
-      />
-
-      {/* Small sparkles */}
-      {[...Array(6)].map((_, i) => (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+      {/* Subtle gradient background glow - static, not animated */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[100px]" />
+      
+      {/* Minimal floating dots - hero area only */}
+      {dots.map((dot) => (
         <motion.div
-          key={i}
+          key={dot.id}
+          className="absolute rounded-full bg-primary/20"
+          style={{
+            left: `${dot.x}%`,
+            top: `${Math.min(dot.y, 60)}%`, // Only in top 60% (hero area)
+            width: dot.size,
+            height: dot.size,
+          }}
           animate={{
-            opacity: [0.2, 0.8, 0.2],
-            scale: [1, 1.5, 1],
+            y: [0, -15, 0],
+            opacity: [0.1, 0.3, 0.1],
           }}
           transition={{
-            duration: 3 + i,
+            duration: dot.duration,
             repeat: Infinity,
+            delay: dot.delay,
             ease: "easeInOut",
-            delay: i * 0.5,
-          }}
-          className="absolute w-1 h-1 rounded-full bg-primary"
-          style={{
-            top: `${20 + i * 12}%`,
-            left: `${10 + i * 15}%`,
           }}
         />
       ))}
