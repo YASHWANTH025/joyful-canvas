@@ -44,7 +44,7 @@ const Hero = () => {
             duration: 0.6,
             delay: 0.3
           }} className="mb-4">
-              <span className="font-signature text-5xl sm:text-6xl md:text-7xl text-foreground font-medium leading-tight block lg:text-7xl">Yashwanth A M</span>
+              <span className="font-signature text-5xl sm:text-6xl md:text-7xl text-foreground font-medium leading-tight block lg:text-6xl">Yashwanth A M</span>
               <span className="font-signature text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground font-medium leading-tight block">
             </span>
             </motion.h1>
