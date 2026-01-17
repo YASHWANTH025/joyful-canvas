@@ -2,37 +2,34 @@ import { motion } from "framer-motion";
 import { useMemo } from "react";
 
 const FloatingElements = () => {
-  // Minimal floating dots - only 15, very subtle
+  // Very minimal floating dots - only 8, extremely subtle
   const dots = useMemo(() => {
-    return Array.from({ length: 15 }, (_, i) => ({
+    return Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 2,
-      duration: Math.random() * 15 + 20, // Very slow: 20-35s
+      x: 10 + Math.random() * 80,
+      y: 10 + Math.random() * 50,
+      size: Math.random() * 2 + 1,
+      duration: Math.random() * 10 + 15,
       delay: Math.random() * 5,
     }));
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Subtle gradient background glow - static, not animated */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[100px]" />
-      
       {/* Minimal floating dots - hero area only */}
       {dots.map((dot) => (
         <motion.div
           key={dot.id}
-          className="absolute rounded-full bg-primary/20"
+          className="absolute rounded-full bg-foreground"
           style={{
             left: `${dot.x}%`,
-            top: `${Math.min(dot.y, 60)}%`, // Only in top 60% (hero area)
+            top: `${dot.y}%`,
             width: dot.size,
             height: dot.size,
           }}
           animate={{
-            y: [0, -15, 0],
-            opacity: [0.1, 0.3, 0.1],
+            y: [0, -10, 0],
+            opacity: [0.03, 0.06, 0.03],
           }}
           transition={{
             duration: dot.duration,

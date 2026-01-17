@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Space Grotesk', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
-        signature: ['Playfair Display', 'serif'],
+        signature: ['Cormorant Garamond', 'serif'],
         handwritten: ['Caveat', 'cursive'],
       },
       colors: {

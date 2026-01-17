@@ -21,33 +21,31 @@ const Navigation = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 px-8 py-4 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-glass-border" : ""
+      className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20 py-6 transition-all duration-300 ${
+        isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Signature Logo */}
+        {/* Logo */}
         <motion.a
           href="#about"
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center"
+          whileHover={{ scale: 1.02 }}
+          className="flex items-center gap-2"
         >
-          <span className="font-signature text-3xl md:text-4xl gradient-text italic">
-            Yashwanth
-          </span>
+          <span className="text-2xl font-signature font-semibold text-foreground italic">/Y</span>
+          <span className="text-lg font-heading font-medium text-foreground tracking-wide">YASHWANTH A M</span>
         </motion.a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6">
-          {navItems.map((item, index) => (
+        <div className="hidden md:flex items-center gap-8">
+          {navItems.slice(0, 5).map((item, index) => (
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ y: -2 }}
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm tracking-wide uppercase"
             >
               {item}
             </motion.a>
@@ -56,12 +54,11 @@ const Navigation = () => {
           <ThemeToggle />
           
           <motion.a
-            href="mailto:yashwanthyashum2003@gmail.com"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-5 py-2.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium hover:bg-primary/20 transition-all"
+            href="#contact"
+            whileHover={{ scale: 1.02 }}
+            className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm tracking-wide uppercase"
           >
-            Hire Me
+            Contact
           </motion.a>
         </div>
 
@@ -69,11 +66,11 @@ const Navigation = () => {
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
           <motion.button
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="w-10 h-10 rounded-xl bg-secondary/50 border border-glass-border flex items-center justify-center text-foreground"
+            className="w-10 h-10 flex items-center justify-center text-foreground"
           >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
         </div>
       </div>
@@ -85,25 +82,19 @@ const Navigation = () => {
           height: isMobileMenuOpen ? "auto" : 0,
           opacity: isMobileMenuOpen ? 1 : 0 
         }}
-        className="md:hidden overflow-hidden"
+        className="md:hidden overflow-hidden bg-background"
       >
-        <div className="py-4 space-y-2">
+        <div className="py-6 space-y-1">
           {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-xl transition-all"
+              className="block px-4 py-3 text-muted-foreground hover:text-foreground transition-colors text-sm tracking-wide uppercase"
             >
               {item}
             </a>
           ))}
-          <a
-            href="mailto:yashwanthyashum2003@gmail.com"
-            className="block px-4 py-3 text-primary font-medium"
-          >
-            Hire Me
-          </a>
         </div>
       </motion.div>
     </motion.nav>
