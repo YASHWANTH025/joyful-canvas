@@ -48,18 +48,39 @@ const Hero = () => {
               <div className="w-full h-full rounded-full bg-background" />
             </motion.div>
 
-            {/* Profile image container */}
+          {/* Profile image container */}
+          <motion.div
+            className="relative w-52 h-52 rounded-full overflow-hidden border-4 border-background shadow-xl z-10"
+            whileHover={{ 
+              scale: 1.03,
+              boxShadow: "0 0 40px hsl(270 91% 65% / 0.5), 0 0 80px hsl(270 91% 65% / 0.3)"
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            style={{
+              boxShadow: "0 0 20px hsl(270 91% 65% / 0.2)"
+            }}
+          >
+            {/* Inner glow overlay */}
             <motion.div
-              className="relative w-52 h-52 rounded-full overflow-hidden border-4 border-background shadow-xl z-10"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-            >
-              <img
-                src={profileImage}
-                alt="Yashwanth A M - Software Developer"
-                className="w-full h-full object-cover object-center"
-              />
-            </motion.div>
+              className="absolute inset-0 rounded-full z-20 pointer-events-none"
+              animate={{
+                background: [
+                  "radial-gradient(circle at 30% 30%, hsl(270 91% 65% / 0.15) 0%, transparent 50%)",
+                  "radial-gradient(circle at 70% 70%, hsl(280 100% 60% / 0.15) 0%, transparent 50%)",
+                  "radial-gradient(circle at 30% 30%, hsl(270 91% 65% / 0.15) 0%, transparent 50%)"
+                ]
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <img
+              src={profileImage}
+              alt="Yashwanth A M - Software Developer"
+              className="w-full h-full object-cover object-top scale-110"
+              style={{
+                objectPosition: "center 15%"
+              }}
+            />
+          </motion.div>
           </motion.div>
 
           {/* Open to Opportunities Badge */}
