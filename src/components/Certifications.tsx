@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
-import { Award, Calendar, ExternalLink } from "lucide-react";
+import { Calendar, ExternalLink } from "lucide-react";
 
 const Certifications = () => {
   const certifications = [
@@ -8,41 +8,26 @@ const Certifications = () => {
       title: "Oracle OCI AI Foundations Associate",
       issuer: "Oracle",
       year: "2025",
-      icon: "🏆",
-      color: "text-amber-400",
-      bgColor: "bg-amber-500/20",
     },
     {
       title: "React Front-End Development",
       issuer: "Coursera",
       year: "2025",
-      icon: "⚛️",
-      color: "text-cyan-400",
-      bgColor: "bg-cyan-500/20",
     },
     {
       title: "Flutter Development",
       issuer: "Infosys",
       year: "2025",
-      icon: "📱",
-      color: "text-blue-400",
-      bgColor: "bg-blue-500/20",
     },
     {
       title: "CertNexus AI Practitioner",
       issuer: "CertNexus",
       year: "2024",
-      icon: "🤖",
-      color: "text-purple-400",
-      bgColor: "bg-purple-500/20",
     },
     {
       title: "Data Security and Privacy",
       issuer: "Coursera",
       year: "2023",
-      icon: "🔐",
-      color: "text-green-400",
-      bgColor: "bg-green-500/20",
     },
   ];
 
@@ -54,40 +39,42 @@ const Certifications = () => {
   };
 
   return (
-    <section id="certifications" className="py-24 px-8 relative">
+    <section id="certifications" className="py-24 px-6 md:px-12 lg:px-20 relative bg-secondary/30">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+            <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-3">
+              Achievements
+            </p>
+            <h2 className="text-4xl md:text-5xl font-signature font-medium text-foreground mb-4">
               Certifications & Experience
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Professional certifications and industry experience.
-            </p>
+            <div className="w-12 h-0.5 bg-foreground mx-auto" />
           </div>
         </ScrollReveal>
 
         {/* Internship Card */}
         <ScrollReveal delay={0.1}>
           <motion.div
-            whileHover={{ y: -5 }}
-            className="glass-card p-8 mb-12 glow-border"
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.3 }}
+            className="bg-background border border-foreground rounded-lg p-8 mb-12"
           >
             <div className="flex flex-col md:flex-row md:items-center gap-6">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl">
-                💼
+              <div className="w-16 h-16 rounded-lg bg-foreground flex items-center justify-center text-background text-2xl font-bold">
+                AI
               </div>
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3 mb-2">
                   <h3 className="font-heading font-semibold text-xl text-foreground">
                     {internship.title}
                   </h3>
-                  <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium">
+                  <span className="px-3 py-1 rounded-full bg-foreground text-background text-xs font-medium">
                     Internship
                   </span>
                 </div>
                 <p className="text-muted-foreground mb-2">{internship.organization}</p>
-                <div className="flex items-center gap-2 text-sm text-primary">
+                <div className="flex items-center gap-2 text-sm text-foreground">
                   <Calendar className="w-4 h-4" />
                   {internship.period}
                 </div>
@@ -102,29 +89,19 @@ const Certifications = () => {
           {certifications.map((cert, index) => (
             <ScrollReveal key={cert.title} delay={index * 0.1}>
               <motion.div
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="glass-card p-5 group cursor-pointer"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
+                className="bg-background border border-border rounded-lg p-5 group cursor-pointer hover:border-foreground"
               >
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-xl ${cert.bgColor} flex items-center justify-center text-2xl`}>
-                    {cert.icon}
-                  </div>
+                <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-heading font-medium text-sm text-foreground mb-1 truncate group-hover:text-primary transition-colors">
+                    <h4 className="font-heading font-medium text-sm text-foreground mb-1 group-hover:text-muted-foreground transition-colors duration-300">
                       {cert.title}
                     </h4>
                     <p className="text-xs text-muted-foreground mb-2">{cert.issuer}</p>
-                    <div className="flex items-center justify-between">
-                      <span className={`text-xs font-medium ${cert.color}`}>{cert.year}</span>
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        className="text-muted-foreground hover:text-primary"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </motion.div>
-                    </div>
+                    <span className="text-xs font-medium text-foreground">{cert.year}</span>
                   </div>
+                  <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300 flex-shrink-0" />
                 </div>
               </motion.div>
             </ScrollReveal>
