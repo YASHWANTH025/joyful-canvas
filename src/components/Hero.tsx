@@ -80,7 +80,8 @@ const Hero = () => {
               </a>
               <a href="tel:+919019296432" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors duration-300 group">
                 <Phone className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-sm tracking-wide">+91 9019296432</span>
+                <span className="text-sm tracking-wide">+91 6363626713
+ </span>
               </a>
             </motion.div>
 
