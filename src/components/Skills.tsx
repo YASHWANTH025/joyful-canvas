@@ -64,17 +64,50 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 md:px-12 lg:px-20 relative bg-secondary/30">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-24 px-6 md:px-12 lg:px-20 relative">
+      {/* Section background glow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px]"
+          style={{
+            background: "radial-gradient(ellipse, hsl(var(--primary) / 0.05) 0%, transparent 70%)",
+            filter: "blur(80px)",
+          }}
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-3">
+            <motion.p 
+              className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-3"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               What I Do
-            </p>
-            <h2 className="text-4xl md:text-5xl font-signature font-medium text-foreground mb-4">
+            </motion.p>
+            <motion.h2 
+              className="text-4xl md:text-5xl font-signature font-medium text-foreground mb-4 glow-text-subtle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
               Technical Skills
-            </h2>
-            <div className="w-12 h-0.5 bg-foreground mx-auto" />
+            </motion.h2>
+            <motion.div 
+              className="w-12 h-0.5 bg-gradient-to-r from-primary to-accent mx-auto"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            />
           </div>
         </ScrollReveal>
 
@@ -82,15 +115,19 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <ScrollReveal key={category.title} delay={categoryIndex * 0.1}>
               <motion.div 
-                className="bg-background border border-border rounded-lg p-6 h-full hover:shadow-lg transition-shadow duration-300"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3 }}
+                className="glass-card-hover p-6 h-full group"
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-lg bg-foreground flex items-center justify-center text-background">
+                  <motion.div 
+                    className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {category.icon}
-                  </div>
-                  <h3 className="font-heading font-semibold text-lg text-foreground">
+                  </motion.div>
+                  <h3 className="font-heading font-semibold text-lg text-foreground group-hover:text-primary transition-colors duration-300">
                     {category.title}
                   </h3>
                 </div>
@@ -106,22 +143,35 @@ const Skills = () => {
                     >
                       <div className="flex justify-between mb-2">
                         <span className="text-sm text-muted-foreground">{skill.name}</span>
-                        <span className="text-sm text-foreground font-medium">
+                        <span className="text-sm text-primary font-medium">
                           {skill.level}%
                         </span>
                       </div>
-                      <div className="h-1.5 bg-border rounded-full overflow-hidden">
+                      <div className="h-2 bg-border/50 rounded-full overflow-hidden relative">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true }}
                           transition={{ 
-                            duration: 1, 
+                            duration: 1.2, 
                             delay: categoryIndex * 0.1 + skillIndex * 0.1,
-                            ease: "easeOut"
+                            ease: [0.25, 0.46, 0.45, 0.94]
                           }}
-                          className="h-full rounded-full bg-foreground"
-                        />
+                          className="h-full rounded-full bg-gradient-to-r from-primary to-accent relative"
+                        >
+                          {/* Glow effect on progress bar */}
+                          <motion.div
+                            className="absolute inset-0 rounded-full"
+                            animate={{
+                              boxShadow: [
+                                "0 0 10px hsl(var(--primary) / 0.3)",
+                                "0 0 20px hsl(var(--primary) / 0.5)",
+                                "0 0 10px hsl(var(--primary) / 0.3)",
+                              ],
+                            }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          />
+                        </motion.div>
                       </div>
                     </motion.div>
                   ))}
