@@ -46,7 +46,7 @@ const Certifications = () => {
             <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase mb-3">
               Achievements
             </p>
-            <h2 className="text-4xl md:text-5xl font-signature font-medium text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-brush text-foreground mb-4">
               Certifications & Experience
             </h2>
             <div className="w-12 h-0.5 bg-foreground mx-auto" />

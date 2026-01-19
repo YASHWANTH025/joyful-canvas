@@ -40,7 +40,7 @@ const WorkExperience = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-brush text-foreground mb-4">
             Work Experience
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">

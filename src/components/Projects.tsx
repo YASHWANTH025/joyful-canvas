@@ -72,7 +72,7 @@ const Projects = () => {
               My Work
             </motion.p>
             <motion.h2 
-              className="text-4xl md:text-5xl font-signature font-medium text-foreground mb-4 glow-text-subtle"
+              className="text-4xl md:text-5xl font-brush text-foreground mb-4 glow-text-subtle"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
