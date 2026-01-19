@@ -18,6 +18,7 @@ export default {
         body: ['Inter', 'sans-serif'],
         signature: ['Cormorant Garamond', 'serif'],
         handwritten: ['Caveat', 'cursive'],
+        brush: ['Satisfy', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
