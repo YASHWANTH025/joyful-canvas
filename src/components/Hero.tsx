@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, ArrowDown, Sparkles } from "lucide-react";
+import { Mail, Phone, ArrowDown, Sparkles, Download, Eye } from "lucide-react";
 import profileImage from "@/assets/profile.png";
+import { useTypingAnimation } from "@/hooks/useTypingAnimation";
+import MagneticButton from "./MagneticButton";
 
 const Hero = () => {
+  const roles = ["Software Developer", "Full Stack Developer", "UI/UX Designer", "Problem Solver"];
+  const typedText = useTypingAnimation(roles, 120, 60, 2000);
+
   return (
     <section id="about" className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-20 pt-20 relative overflow-hidden">
       {/* Decorative background elements */}
@@ -85,15 +90,54 @@ const Hero = () => {
               </motion.span>
             </motion.h1>
 
-            {/* Role with gradient */}
+            {/* Role with typing animation */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-2xl md:text-3xl font-light mb-12"
+              className="text-2xl md:text-3xl font-light mb-8"
             >
-              <span className="gradient-text">Software Developer</span>
+              <span className="gradient-text">{typedText}</span>
+              <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="text-primary ml-1"
+              >
+                |
+              </motion.span>
             </motion.h2>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="flex flex-wrap gap-4 mb-10"
+            >
+              <MagneticButton
+                href="#projects"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium text-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Eye className="w-4 h-4" />
+                  View Projects
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%]"
+                  animate={{ backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                />
+              </MagneticButton>
+
+              <MagneticButton
+                href="/resume.pdf"
+                download="Yashwanth_AM_Resume.pdf"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 border border-primary/50 text-foreground rounded-full font-medium text-sm overflow-hidden transition-all duration-300 hover:border-primary hover:bg-primary/5 backdrop-blur-sm"
+              >
+                <Download className="w-4 h-4 text-primary group-hover:animate-bounce" />
+                Download Resume
+              </MagneticButton>
+            </motion.div>
 
             {/* Contact Info with enhanced styling */}
             <motion.div
