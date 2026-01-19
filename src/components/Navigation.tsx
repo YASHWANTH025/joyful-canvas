@@ -28,7 +28,7 @@ const Navigation = () => {
         scale: 1.02
       }} className="flex items-center gap-2">
           <span className="font-semibold text-foreground italic text-base font-serif">​</span>
-          <span className="text-lg font-heading font-medium text-foreground tracking-wide">YASHWANTH A M</span>
+          <span className="text-lg font-medium text-foreground tracking-wide font-mono">YASHWANTH  </span>
         </motion.a>
 
         {/* Desktop Navigation */}
