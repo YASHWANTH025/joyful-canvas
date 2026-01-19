@@ -81,7 +81,7 @@ const Hero = () => {
               className="mb-4"
             >
               <motion.span 
-                className="font-brush text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl text-foreground leading-tight block glow-text-subtle"
+                className="font-signature text-5xl sm:text-6xl md:text-7xl lg:text-6xl text-foreground font-medium leading-tight block glow-text-subtle"
                 whileHover={{ 
                   textShadow: "0 0 40px hsl(var(--primary) / 0.5)",
                 }}
