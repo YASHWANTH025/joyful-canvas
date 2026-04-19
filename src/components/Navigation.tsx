@@ -21,14 +21,16 @@ const Navigation = () => {
     y: 0
   }} transition={{
     duration: 0.6
-  }} className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20 py-6 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border" : ""}`}>
+  }} className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20 py-4 transition-all duration-300 ${isScrolled ? "glass-nav" : ""}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <motion.a href="#about" whileHover={{
         scale: 1.02
-      }} className="flex items-center gap-2">
-          <span className="font-semibold text-foreground italic text-base font-serif">​</span>
-          <span className="text-lg font-medium text-foreground tracking-wide font-mono">YASHWANTH  </span>
+      }} className="flex items-center gap-2.5">
+          <span className="w-7 h-7 rounded-lg bg-foreground flex items-center justify-center">
+            <span className="w-3 h-3 rounded-sm" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--teal)))" }} />
+          </span>
+          <span className="text-base md:text-lg font-bold tracking-tight text-foreground">YASHWANTH</span>
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -42,16 +44,17 @@ const Navigation = () => {
         }} transition={{
           duration: 0.4,
           delay: index * 0.05
-        }} className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm tracking-wide uppercase">
+        }} className="relative text-foreground/70 hover:text-foreground transition-colors duration-300 text-sm font-medium tracking-wide after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full">
               {item}
             </motion.a>)}
-          
+
           <ThemeToggle />
-          
+
           <motion.a href="#contact" whileHover={{
-          scale: 1.02
-        }} className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm tracking-wide uppercase">
-            Contact
+          scale: 1.03
+        }} className="group inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium tracking-wide transition-all hover:shadow-[var(--shadow-elegant)]">
+            Get in touch
+            <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </motion.a>
         </div>
 
