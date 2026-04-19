@@ -1,277 +1,174 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, ArrowDown, Sparkles, Download, Eye } from "lucide-react";
-import profileImage from "@/assets/profile.png";
+import { ArrowUpRight, Download, Sparkles } from "lucide-react";
 import { useTypingAnimation } from "@/hooks/useTypingAnimation";
-import MagneticButton from "./MagneticButton";
 
+/**
+ * Versa Networks-inspired hero:
+ * - Massive bold typography with one italic gradient accent word
+ * - Animated gradient mesh background (rendered globally by AuroraBackground)
+ * - Two CTAs: View Projects (primary) + Download Resume (ghost)
+ */
 const Hero = () => {
-  const roles = ["Software Developer", "Full Stack Developer", "UI/UX Designer", "Problem Solver"];
-  const typedText = useTypingAnimation(roles, 120, 60, 2000);
+  const roles = [
+    "Software Developer",
+    "Full Stack Developer",
+    "UI/UX Designer",
+    "Problem Solver",
+  ];
+  const typedText = useTypingAnimation(roles, 110, 55, 1800);
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-20 pt-20 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-32 h-32"
-          style={{
-            background: "radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 70%)",
-            filter: "blur(30px)",
-          }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-40 right-20 w-48 h-48"
-          style={{
-            background: "radial-gradient(circle, hsl(var(--accent) / 0.08) 0%, transparent 70%)",
-            filter: "blur(40px)",
-          }}
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
+    <section
+      id="about"
+      className="relative min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-20 pt-32 pb-20 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="order-2 lg:order-1"
+        {/* Eyebrow announcement chip */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-10"
+        >
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-full glass-nav text-xs md:text-sm font-medium tracking-wide text-foreground/80 hover:text-foreground transition-colors"
           >
-            {/* Greeting with underline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-8"
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span>Available for new opportunities — let’s build something</span>
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </motion.div>
+
+        {/* Massive bold headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="text-center font-extrabold tracking-[-0.04em] leading-[0.95] text-foreground"
+          style={{ fontSize: "clamp(2.75rem, 8.5vw, 7.5rem)" }}
+        >
+          Crafting bold{" "}
+          <span
+            className="italic font-serif font-medium bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(120deg, hsl(var(--accent)) 0%, hsl(var(--teal)) 60%, hsl(var(--sky)) 100%)",
+            }}
+          >
+            digital
+          </span>{" "}
+          experiences with code &amp; design.
+        </motion.h1>
+
+        {/* Sub-headline + typed role */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="mt-8 max-w-2xl mx-auto text-center"
+        >
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Hi, I’m <span className="text-foreground font-semibold">Yashwanth A M</span> — a{" "}
+            <span className="text-foreground font-semibold">{typedText}</span>
+            <motion.span
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ duration: 0.8, repeat: Infinity }}
+              className="text-accent ml-0.5"
             >
-              <div className="flex items-center gap-2 mb-3">
-                <motion.div
-                  animate={{ rotate: [0, 15, -15, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                >
-                  <Sparkles className="w-4 h-4 text-primary" />
-                </motion.div>
-                <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase">
-                  Hello, my name is
-                </p>
+              |
+            </motion.span>
+            <br className="hidden md:block" />
+            building fast, accessible, and beautifully simple products.
+          </p>
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-10 flex flex-wrap justify-center items-center gap-4"
+        >
+          <a
+            href="#projects"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-foreground text-background font-medium text-sm md:text-base tracking-wide transition-all duration-300 hover:scale-[1.03] hover:shadow-[var(--shadow-elegant)]"
+          >
+            View Projects
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+
+          <a
+            href="/resume.pdf"
+            download="Yashwanth_AM_Resume.pdf"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-foreground/20 bg-background/40 backdrop-blur-md text-foreground font-medium text-sm md:text-base tracking-wide transition-all duration-300 hover:bg-foreground/5 hover:border-foreground/40"
+          >
+            <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+            Download Resume
+          </a>
+        </motion.div>
+
+        {/* Floating dashboard / stats card (Versa-style) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="mt-20 max-w-4xl mx-auto"
+        >
+          <div className="glass-card p-6 md:p-8 rounded-3xl">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground tracking-widest uppercase">
+                <Sparkles className="w-3.5 h-3.5 text-accent" />
+                Snapshot
               </div>
-              <motion.div 
-                className="w-12 h-0.5 bg-gradient-to-r from-primary to-accent"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              />
-            </motion.div>
-
-            {/* Name - Large Elegant Typography */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mb-4"
-            >
-              <motion.span 
-                className="font-signature text-5xl sm:text-6xl md:text-7xl lg:text-6xl text-foreground font-medium leading-tight block glow-text-subtle"
-                whileHover={{ 
-                  textShadow: "0 0 40px hsl(var(--primary) / 0.5)",
-                }}
-              >
-                Yashwanth A M
-              </motion.span>
-            </motion.h1>
-
-            {/* Role with typing animation */}
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-2xl md:text-3xl font-light mb-8"
-            >
-              <span className="gradient-text">{typedText}</span>
-              <motion.span
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="text-primary ml-1"
-              >
-                |
-              </motion.span>
-            </motion.h2>
-
-            {/* Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex flex-wrap gap-4 mb-10"
-            >
-              <MagneticButton
-                href="#projects"
-                className="group relative inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium text-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <Eye className="w-4 h-4" />
-                  View Projects
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%]"
-                  animate={{ backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-              </MagneticButton>
-
-              <MagneticButton
-                href="/resume.pdf"
-                download="Yashwanth_AM_Resume.pdf"
-                className="group relative inline-flex items-center gap-2 px-6 py-3 border border-primary/50 text-foreground rounded-full font-medium text-sm overflow-hidden transition-all duration-300 hover:border-primary hover:bg-primary/5 backdrop-blur-sm"
-              >
-                <Download className="w-4 h-4 text-primary group-hover:animate-bounce" />
-                Download Resume
-              </MagneticButton>
-            </motion.div>
-
-            {/* Contact Info with enhanced styling */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="space-y-4"
-            >
-              <motion.a
-                href="mailto:yashwanthyashum2003@gmail.com"
-                className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 group glass-card-subtle px-4 py-3 w-fit"
-                whileHover={{ x: 5 }}
-              >
-                <motion.div
-                  className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Mail className="w-4 h-4 text-primary" />
-                </motion.div>
-                <span className="text-sm tracking-wide">YASHWANTHYASHUM2003@GMAIL.COM</span>
-              </motion.a>
-              <motion.a
-                href="tel:+916363626713"
-                className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-all duration-300 group glass-card-subtle px-4 py-3 w-fit"
-                whileHover={{ x: 5 }}
-              >
-                <motion.div
-                  className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Phone className="w-4 h-4 text-primary" />
-                </motion.div>
-                <span className="text-sm tracking-wide">+91 6363626713</span>
-              </motion.a>
-            </motion.div>
-
-            {/* Scroll indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="mt-16 hidden lg:block"
-            >
-              <motion.a
-                href="#skills"
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm group"
-              >
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-8 h-12 rounded-full border-2 border-muted-foreground/30 group-hover:border-primary/50 flex items-start justify-center pt-2 transition-colors duration-300"
-                >
-                  <motion.div
-                    animate={{ y: [0, 8, 0], opacity: [1, 0.5, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-1 h-2 rounded-full bg-primary"
-                  />
-                </motion.div>
-                <span className="tracking-wide group-hover:translate-x-1 transition-transform duration-300">SCROLL DOWN</span>
-              </motion.a>
-            </motion.div>
-          </motion.div>
-
-          {/* Right - Profile Image in Dark Circle */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
-          >
-            <div className="relative">
-              {/* Animated rings */}
-              <motion.div
-                className="absolute inset-0 -m-4 rounded-full border border-primary/20"
-                animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div
-                className="absolute inset-0 -m-8 rounded-full border border-accent/10"
-                animate={{ scale: [1.05, 1, 1.05], opacity: [0.2, 0.4, 0.2] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              />
-
-              {/* Dark circle background */}
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.4 }}
-                className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px] xl:w-[480px] xl:h-[480px] rounded-full bg-foreground overflow-hidden relative bio-pulse"
-              >
-                {/* Inner glow effect */}
-                <motion.div
-                  className="absolute inset-0 rounded-full pointer-events-none"
-                  animate={{
-                    boxShadow: [
-                      "inset 0 0 60px hsl(var(--primary) / 0.1)",
-                      "inset 0 0 100px hsl(var(--primary) / 0.2)",
-                      "inset 0 0 60px hsl(var(--primary) / 0.1)",
-                    ],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                {/* Profile Image */}
-                <img
-                  src={profileImage}
-                  alt="Yashwanth A M - Software Developer"
-                  className="w-full h-full object-cover object-top scale-110"
-                  style={{ objectPosition: "center 15%" }}
-                />
-
-                {/* Gradient overlay */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent"
-                  animate={{ opacity: [0.3, 0.5, 0.3] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </motion.div>
-
-              {/* Outer glow */}
-              <motion.div
-                className="absolute inset-0 rounded-full -z-10"
-                animate={{
-                  boxShadow: [
-                    "0 20px 80px hsl(var(--primary) / 0.2)",
-                    "0 30px 100px hsl(var(--primary) / 0.3)",
-                    "0 20px 80px hsl(var(--primary) / 0.2)",
-                  ],
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
+              <div className="flex gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-destructive/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-accent" />
+                <span className="w-2.5 h-2.5 rounded-full bg-teal" />
+              </div>
             </div>
-          </motion.div>
-        </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { label: "Projects", value: "20+" },
+                { label: "Technologies", value: "15+" },
+                { label: "Years coding", value: "3+" },
+                { label: "Coffee ☕", value: "∞" },
+              ].map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 + i * 0.08 }}
+                >
+                  <div className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+                    {s.value}
+                  </div>
+                  <div className="text-xs md:text-sm text-muted-foreground mt-1 tracking-wide uppercase">
+                    {s.label}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Mini animated bars */}
+            <div className="mt-8 flex items-end gap-2 h-20">
+              {[55, 75, 40, 90, 65, 80, 50, 95, 70, 60, 85, 45].map((h, i) => (
+                <motion.div
+                  key={i}
+                  className="flex-1 rounded-t-md"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, hsl(var(--accent)) 0%, hsl(var(--teal)) 100%)",
+                  }}
+                  initial={{ height: 0 }}
+                  animate={{ height: `${h}%` }}
+                  transition={{ duration: 0.8, delay: 1 + i * 0.05, ease: "easeOut" }}
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
