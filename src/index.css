@@ -147,13 +147,18 @@
 
 @layer components {
   .glass-card {
-    @apply bg-card/50 backdrop-blur-2xl border border-glass-border rounded-2xl;
+    @apply bg-card/70 backdrop-blur-xl border border-glass-border rounded-2xl;
     box-shadow: var(--shadow-card);
-    background: linear-gradient(
-      135deg,
-      hsl(var(--card) / 0.7) 0%,
-      hsl(var(--card) / 0.4) 100%
-    );
+  }
+
+  .glass-nav {
+    @apply bg-background/70 backdrop-blur-2xl border border-glass-border/60;
+    box-shadow: 0 4px 30px -10px hsl(var(--foreground) / 0.08);
+  }
+
+  .gradient-mesh-bg {
+    background-color: hsl(var(--background));
+    background-image: var(--gradient-mesh);
   }
 
   .glass-card-hover {
