@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
-import FloatingElements from "@/components/FloatingElements";
 import AuroraBackground from "@/components/AuroraBackground";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import Hero from "@/components/Hero";
+import LogoMarquee from "@/components/LogoMarquee";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Education from "@/components/Education";
@@ -18,7 +18,7 @@ const Index = () => {
   return (
     <>
       <LoadingAnimation onComplete={() => setIsLoaded(true)} />
-      
+
       <AnimatePresence>
         {isLoaded && (
           <motion.div
@@ -28,10 +28,10 @@ const Index = () => {
             className="relative min-h-screen bg-background overflow-x-hidden"
           >
             <AuroraBackground />
-            <FloatingElements />
             <Navigation />
             <main>
               <Hero />
+              <LogoMarquee />
               <Skills />
               <Projects />
               <Education />
@@ -47,3 +47,4 @@ const Index = () => {
 };
 
 export default Index;
+
